@@ -1,0 +1,55 @@
+PARTE 1
+
+1) CREATE DATABASE movies;
+
+2) \c movies; --3 CREATE TABLE movie ( id SERIAL, name VARCHAR(500) );
+
+4) INSERT INTO movie (name) VALUES ('El Rey León');
+
+5) INSERT INTO movie (name) VALUES ('Terminator II');
+
+6) ALTER TABLE movie ADD COLUMN year VARCHAR(4);
+
+7) ALTER TABLE movie ADD COLUMN gender VARCHAR(30);
+
+8) UPDATE movie SET year = '1984';
+
+9) UPDATE movie SET gender = 'Drama';
+
+10) DELETE movie WHERE name = 'Terminator II';
+
+11) CREATE USER usuario_prueba WITH PASSWORD '1234' ;
+
+12) CREATE ROLE role_read_only; GRANT SELECT ON movie TO role_read_only ;
+
+ Permisos de lectura para todas las tablas -- REVISAR
+
+13) CTRL + D psql -U usuario_prueba
+
+____________________________________________________________________________
+
+PARTE 2
+
+ 1) INSERT INTO movies (name, year, gender) VALUES ('X-Men First Class', 2011, 'Action');
+    INSERT INTO movies (name, year, gender) VALUES ('Sexto Sentido', 1999, 'Thriller');
+    INSERT INTO movies (name, year, gender) VALUES ('Monster Inc.', 2001, 'Animation');
+    INSERT INTO movies (name, year, gender) VALUES ('Bohemian Rhapsody', 2018, 'Biography');
+    INSERT INTO movies (name, year, gender) VALUES ('The Other Guys', 2010, 'Comedy');
+
+ 2) SELECT * FROM movie ORDER BY name ASC LIMIT 3;
+
+ 3) SELECT * FROM movie ORDER BY year DESC LIMIT 3;
+
+ 4) SELECT COUNT(*) FROM movie;
+
+ 5) SELECT name, COUNT(year) FROM movie GROUP BY year ;
+
+ 6) ALTER TABLE movie ADD COLUMN category VARCHAR(30);
+
+ 7) UPDATE movies SET category='adultos' WHERE name='Sexto Sentido';
+    UPDATE movies SET category='familiar' WHERE name='X-Men First Class';
+    UPDATE movies SET category='niños' WHERE name='Monster Inc.';
+    UPDATE movies SET category='adultos' WHERE name='Bohemian Rhapsody';
+    UPDATE movies SET category='familiar' WHERE name='The Other Guys';
+
+ 8) SELECT DISTINCT (category) FROM movie ;
